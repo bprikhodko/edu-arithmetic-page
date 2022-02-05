@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+
+    <script>
+        function setFormula() {
+            var formulaValue = ["a", "action", "b"]
+                .map(id => document.getElementById(id))
+                .map(elem => elem.value)
+                .join(" ");
+
+
+            var formulaValue = 
+                document.getElementById("a").value + " " +
+                document.getElementById("action").value + " " +
+                document.getElementById("b").value;
+
+            document.getElementById("formula").value = formulaValue;
+
+            evaluateFormula()
+
+        }
+
+        function evaluateFormula() {
+            document.getElementById("result").innerText = "Результат: " + eval(document.getElementById("formula").value);
+        }
+    </script>
+
+<body onload="setFormula()">
+
+    <h1>Арифметика на странице</h1>
+    <p>Вбей, выбери, нажми</p>
+
+    <form action="/action_page.php">
+        <input type="number" id="a" name="a" value="2" onchange="setFormula()" />
+
+        <select id="action" name="action" onchange="setFormula()" >
+            <option value="+" selected>+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">:</option>
+        </select>
+
+        <input type="number" id="b" name="b" value="3" onchange="setFormula()" />
+
+        <br>
+        <br>
+        <label>Выражение:</label>
+        <input type="test" id="formula" name="formula" onchange="evaluateFormula()"/>
+
+        <p id="result"></p>
+
+    </form>    
+
+</body>
+
+</html>
